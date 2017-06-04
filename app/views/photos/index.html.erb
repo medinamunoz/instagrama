@@ -9,13 +9,17 @@
         <div class="buttons", style="margin-top:10px; margin-bottom:10px"></div>
         <%= link_to 'Show', photo, :class => 'btn' %>
         <%= link_to 'Edit', edit_photo_path(photo), :class => 'btn' %>
-        <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn' %>
+        <% if user_signed_in? %>
+          <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn' %>
+        <% end %>
       </div>
     </div>
     
   <% end %>
     
   <br>
+  <% if user_signed_in? %>
+    <%= link_to 'New Photo', new_photo_path %>
+  <% end %>
 
-  <%= link_to 'New Photo', new_photo_path %>
 </div>
