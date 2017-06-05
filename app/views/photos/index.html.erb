@@ -1,16 +1,21 @@
 <div class="container">
-  <h1>Photos</h1>
+  <h1>Fotos</h1>
 
   <% @photos.each do |photo| %>
     <div class="col-md-3">
       <div class="thumbnail">
+        <%= photo.user.name %>
         <%= photo.content %>
         <%= image_tag(photo.image, :class => 'img-responsive') %>
         <div class="buttons", style="margin-top:10px; margin-bottom:10px"></div>
         <%= link_to 'Show', photo, :class => 'btn' %>
-        <%= link_to 'Edit', edit_photo_path(photo), :class => 'btn' %>
-        <% if user_signed_in? %>
+        <% if can? :edit, photo %>
+          <%= link_to 'Edit', edit_photo_path(photo), :class => 'btn' %>
           <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn' %>
+        <% end %>
+
+        <% if user_signed_in? %>
+          
         <% end %>
       </div>
     </div>

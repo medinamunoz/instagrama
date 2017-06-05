@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
          
   has_many :photos, dependent: :destroy
+  enum role: [:gest, :user, :admin]
 end
