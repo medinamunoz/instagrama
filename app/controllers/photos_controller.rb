@@ -16,6 +16,7 @@ class PhotosController < ApplicationController
   # GET /photos.json
   def index
     @photos = Photo.all
+    
   end
 
   # GET /photos/1
@@ -37,6 +38,7 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
     @photo.user_id = current_user.id
+
     
     respond_to do |format|
       if @photo.save
@@ -81,7 +83,7 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-      params.require(:photo).permit(:content, :image, :remote_image_url, :image_cache)
+      params.require(:photo).permit(:content, :image, :remote_image_url, :image_cache, :tags.name, :q)
     end
 
 end

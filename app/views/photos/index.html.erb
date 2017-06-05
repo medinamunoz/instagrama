@@ -4,9 +4,10 @@
   <% @photos.each do |photo| %>
     <div class="col-md-3">
       <div class="thumbnail">
-        
+
         <%= photo.content %>
         <%= image_tag(photo.image, :class => 'img-responsive') %>
+        <%= photo.tags.collect(&:name).join(", ")%>
         <div class="buttons", style="margin-top:10px; margin-bottom:10px"></div>
         <%= link_to 'Show', photo, :class => 'btn' %>
         <% if can? :edit, photo %>
