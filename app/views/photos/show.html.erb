@@ -9,6 +9,16 @@
   <strong>Image:</strong>
   <%= image_tag(@photo.image, :style => 'img-responsive') if @photo.image? %>
 </p>
+<h2>Tags</h2>
+<% if @photo.tags.any? %>
+<ul>	
+	<% @photo.tags.each do |tag|  %>
+	<li><%= link_to tag, tag %> </li>
+	<% end %>
+</ul>
+<% else %>
+<p>none available</p>
+<% end %>
 
 <%= link_to 'Edit', edit_photo_path(@photo) %> |
 <%= link_to 'Back', photos_path %>

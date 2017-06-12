@@ -23,11 +23,19 @@
       <%= f.text_field :remote_image_url, :class => 'form-control' , :placeholder => " ó inserte URL de la imágen" %>
       <%= f.hidden_field :image_cache %>
       <%= image_tag(photo.image) if photo.image? %>
-
-
-      
     </div>
   </div>
+
+<h2>Tags</h2>
+<%= f.fields_for :tags do |tag| %>
+  <div class="field">
+    <%= tag.label :name %><br>
+    <%= tag.text_field :name %>
+    <%= tag.check_box :_destroy %>
+    <%= tag.label :_destroy, 'eliminar' %>
+  </div>
+<% end %>
+
 
   <div class="form-group">
     <div class="actions">

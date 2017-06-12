@@ -27,10 +27,12 @@ class PhotosController < ApplicationController
   # GET /photos/new
   def new
     @photo = Photo.new
+    @photo.tags.build
   end
 
   # GET /photos/1/edit
   def edit
+    @photo.tags.build
   end
 
   # POST /photos
@@ -83,7 +85,7 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-      params.require(:photo).permit(:content, :image, :remote_image_url, :image_cache, :tags.name, :q)
+      params.require(:photo).permit(:content, :image, :remote_image_url, :image_cache, tags_attributes: [ :id, :name, :_destroy])
     end
 
 end
